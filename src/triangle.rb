@@ -14,13 +14,16 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
-  #--
-  a, b, c = [a, b, c].sort
-  fail TriangleError if (a+b) <= c
-  sides = [a, b, c].uniq
-  [nil, :equilateral, :isosceles, :scalene][sides.size]
-  #++
+  if a < 0 || b < 0 || c < 0 || a + b <= c || a + c <= b || b + c <= a
+    fail TriangleError, "TriangleError"
+  end
+  if a == b && b == c && c == a
+    return :equilateral
+  elsif a == b || b == c || a == c
+    return  :isosceles
+  else
+    return :scalene
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
